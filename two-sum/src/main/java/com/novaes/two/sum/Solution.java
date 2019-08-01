@@ -18,7 +18,7 @@ public class Solution {
 
     public int[] twoSum(int[] nums, int target) {
         int[] result = new int[2];
-        Number[] numbers = new Number[result.length];
+        Number[] numbers = new Number[nums.length];
         for (int i = 0; i < nums.length; i++) {
             numbers[i] = new Number(nums[i], i);
         }
@@ -30,11 +30,14 @@ public class Solution {
             if (numbers[i].num + numbers[j].num > target) {
                 j--;
             } else {
-                i--;
+                i++;
             }
         }
-        result[0] = numbers[i].position;
-        result[1] = numbers[j].position;
+        if(numbers[i].position > numbers[j].position) {
+            
+        }
+        result[0] = Math.min(numbers[i].position, numbers[j].position);
+        result[1] = Math.max(numbers[i].position, numbers[j].position);
         return result;
     }
 
@@ -56,6 +59,12 @@ public class Solution {
             return Integer.compare(this.num, o.num);
         }
 
+    }
+    
+    public static void main(String[] args) {
+        int[] array = new int[]{1,0,-1};
+        int t = 1;
+        System.out.println(Arrays.toString(new Solution().twoSum(array, t)));
     }
 
 }
